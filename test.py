@@ -14,12 +14,13 @@ SSID=np.unique(X)
 df_SSID=pd.DataFrame({'SSID' : [],'Number_SSID':[],'Risk':[]})
 for x in SSID:
     Number_SSID=(np.count_nonzero(X==x))
-    if x in df_SSID.SSID: #On vérifie si le SSID est déjà présent dans la table et on met à jour les valeurs
+    if x in df_SSID.SSID: #On vérifie si le SSID est déjà présent dans la table et on met à jour les valeurs normalement c'est pas possible car on a un SSID unique par ligne mais on sait jamais
         #amélioration possible .update()
         df_SSID.loc[df_SSID.SSID==x,'Number_SSID']=Number_SSID
         df_SSID.loc[df_SSID.SSID==x,'Risk']=Number_SSID/limit_max
     else: #On ajoute le SSID à la table
+        d1=df_SSID
         d2=pd.DataFrame({'SSID':x,'Number_SSID':Number_SSID,'Risk':Number_SSID/limit_max},index=[0])
-        df_SSID.append(d2,ignore_index=True) ##Apppend deprecated, utiliser concat jsp comment
+        df_SSID=pd.concat([d1,d2])
 
 df_SSID.to_sql(date,con,if_exists='replace',index=False)

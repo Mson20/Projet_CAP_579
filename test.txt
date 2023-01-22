@@ -4,6 +4,7 @@
 00:00:42 -86dBm f4:f5:d8:28:bc:26 "NETGEAR85-5G"
 00:00:46 -89dBm f4:f5:d8:28:bc:26 "NETGEAR85-5G"
 00:00:42 -86dBm f4:f5:d8:28:bc:26 "NETGEAR85-5G"
+00:00:42 -86dBm f4:f5:d8:28:bc:26 "NETGEAR85-5G"
 
 00:00:48 -84dBm f4:f5:d8:06:19:40 "Pamplona Running Club"
 00:01:00 -92dBm 54:60:09:40:56:32 "seawhale"
