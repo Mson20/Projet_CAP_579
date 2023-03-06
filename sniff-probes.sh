@@ -1,7 +1,8 @@
 #!/bin/bash
 OUTPUT="${OUTPUT:-probes.txt}"
 CHANNEL_HOP="${CHANNEL_HOP:-0}"
-
+counter=0
+condition=100
 # channel hop every 2 seconds
 channel_hop() {
 
@@ -36,4 +37,8 @@ if [ "$CHANNEL_HOP" -eq 1 ] ; then
 fi
 
 # filter with awk, then use sed to convert tabs to spaces and remove front and back quotes around SSID
-sudo tcpdump -l -I -i "$IFACE" -e -s 256 type mgt subtype probe-req | awk -f parse-tcpdump.awk | tee -a "$DATE-$OUTPUT" | sed -e 's/\t/ /g' -e 's/^"//' -e 's/"$//
+sudo tcpdump -l -I -i "$IFACE" -e -s 256 type mgt subtype probe-req | awk -f parse-tcpdump.awk | tee -a "$DATE-$OUTPUT" | sed -e 's/\t/ /g' -e 's/^"//' -e 's/"$//'
+counter=$((counter+1))
+if ["$counter"-eq "$condition"] ; then
+	exit 1
+fi
