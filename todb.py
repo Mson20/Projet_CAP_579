@@ -11,6 +11,7 @@ def read_file_to_db(text_file,db_file,date):
     X_Address_MAC=Data.iloc[:,2] #Adresse Mac
     df_SSID=pd.DataFrame({'SSID' : X_SSID,'Time':X_time,'MAC':X_Address_MAC})
     df_traitements=df_SSID.groupby(['SSID','MAC','Time']).count().reset_index()
+    df_traitements=df_traitements.sort_values(by=['Time'],ascending=True)
     df_traitements.to_sql(date,con,if_exists='replace',index=False)
     #date=table
 
