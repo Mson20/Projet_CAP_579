@@ -17,7 +17,7 @@ def read_file_to_db(text_file,db_file,date):
 
 today_date=datetime.datetime.now().strftime('%d-%m-%Y')
 
-filename='out.txt'
+filename='OUT.txt'
 db_name="SSID.db" 
 read_file_to_db(filename,db_name,today_date)
 
