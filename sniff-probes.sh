@@ -38,7 +38,7 @@ fi
 
 # filter with awk, then use sed to convert tabs to spaces and remove front and back quotes around SSID
 sudo tcpdump -l -I -i "$IFACE" -e -s 256 type mgt subtype probe-req | awk -f parse-tcpdump.awk | tee "-$OUTPUT"
-counter=counter+1
-if ["$counter"-eq "$condition"] ; then
+let counter=counter+1
+if [$counter -gt $condition] ; then
 	exit 1
 fi
