@@ -7,7 +7,7 @@ condition=100
 channel_hop() {
 
 	IEEE80211bg="1 2 3 4 5 6 7 8 9 10 11"
-	IEEE80211bg_intl="$IEEE80211b 12 13 14"
+	IEEE80211bg_intl="$IEEE80211bg 12 13 14"
 	IEEE80211a="36 40 44 48 52 56 60 64 149 153 157 161"
 	IEEE80211bga="$IEEE80211bg $IEEE80211a"
 	IEEE80211bga_intl="$IEEE80211bg_intl $IEEE80211a"
@@ -37,7 +37,7 @@ if [ "$CHANNEL_HOP" -eq 1 ] ; then
 fi
 
 # filter with awk, then use sed to convert tabs to spaces and remove front and back quotes around SSID
-sudo tcpdump -l -I -i "$IFACE" -e -s 256 type mgt subtype probe-req | awk -f parse-tcpdump.awk | tee -a "$DATE-$OUTPUT" | sed -e 's/\t/ /g' -e 's/^"//' -e 's/"$//'
+sudo tcpdump -l -I -i "$IFACE" -e -s 256 type mgt subtype probe-req | awk -f parse-tcpdump.awk | tee "-$OUTPUT"
 counter=$((counter+1))
 if ["$counter"-eq "$condition"] ; then
 	exit 1
