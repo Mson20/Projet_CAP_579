@@ -36,6 +36,7 @@ channel_hop() {
         	echo "IFACE env variable must be set. Type "ifconfig" to view network interaces."
         	exit 1
     	fi
+	#Optionnel
 	if [ "$CHANNEL_HOP" -eq 1 ] ; then
         	# channel hop in the background
         	channel_hop &
