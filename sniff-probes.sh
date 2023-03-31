@@ -5,12 +5,13 @@ condition=10
 DB_NAME="panoptique.db"
 DATE=$(date +%Y-%m-%d)
 CHANNEL_HOP="${CHANNEL_HOP:-0}"
-
+#Création de la table pour la db
 sqlite3 $DB_NAME "CREATE TABLE IF NOT EXISTS '$DATE'(id INTEGER PRIMARY KEY AUTOINCREMENT,date_time TEXT,signal_strength TEXT,mac_address TEXT,ssid TEXT);"
 
+#Channel hop permet de prendre davantage de requete sur les differents canaux
 # channel hop every 2 seconds
 channel_hop() {
-    #Different standard
+    #Different standard de WIFI
     IEEE80211bg="1 2 3 4 5 6 7 8 9 10 11"
     IEEE80211bg_intl="$IEEE80211bg 12 13 14"
     IEEE80211a="36 40 44 48 52 56 60 64 149 153 157 161"
